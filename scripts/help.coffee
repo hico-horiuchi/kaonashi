@@ -26,4 +26,4 @@ module.exports = (robot) ->
       t.cell('Command', arr[0])
       t.cell('Description', arr[1])
       t.newRow()
-    msg.reply('\n```\n' + t.print().trim() + '\n```')
+    msg.reply('```\n' + t.print().trim() + '\n```')
