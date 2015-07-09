@@ -50,6 +50,39 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
       <td>現在の時刻を表示</td>
     </tr>
     <tr>
+      <td rowspan="8"><tt>trello.coffee</tt></td>
+      <td><tt>trello list &lt;list&gt;</tt></td>
+      <td>カードの一覧を表示</td>
+    </tr>
+    <tr>
+      <td><tt>trello add &lt;list&gt; &lt;name&gt;</tt></td>
+      <td>カードをリストに追加</td>
+    </tr>
+    <tr>
+      <td><tt>trello move &lt;list&gt; &lt;card&gt;</tt></td>
+      <td>カードをリストに移動</td>
+    </tr>
+    <tr>
+      <td><tt>trello show &lt;card&gt;</tt></td>
+      <td>カードの詳細を表示</td>
+    </tr>
+    <tr>
+      <td><tt>trello archive &lt;card&gt;</tt></td>
+      <td>カードをアーカイブ</td>
+    </tr>
+    <tr>
+      <td><tt>trello comment &lt;card&gt; &lt;text&gt;</tt></td>
+      <td>カードにコメントを追加</td>
+    </tr>
+    <tr>
+      <td><tt>trello assign &lt;card&gt; &lt;member&gt;</tt></td>
+      <td>カードに担当者を追加</td>
+    </tr>
+    <tr>
+      <td><tt>trello due &lt;card&gt; &lt;date&gt;</tt></td>
+      <td>カードに締切を設定</td>
+    </tr>
+    <tr>
       <td><tt>z_dialogue.coffee</tt></td>
       <td></td>
       <td>どのコマンドにも一致しない場合に雑談</td>
