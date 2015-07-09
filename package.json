@@ -1,0 +1,31 @@
+{
+  "name": "kaonashi",
+  "description": "顔無",
+  "version": "2.13.2",
+  "author": "hico-horiuchi",
+  "license": "MIT",
+  "private": true,
+  "keywords": [
+    "github",
+    "hubot",
+    "typetalk",
+    "bot"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hico-horiuchi/kaonashi.git"
+  },
+  "dependencies": {
+    "easy-table": ">= 1.0.x",
+    "hubot": ">= 2.13.x",
+    "hubot-heroku-keepalive": ">= 0.0.x",
+    "hubot-ping": "git://github.com/bouzuya/hubot-ping.git",
+    "hubot-slack": ">= 3.3.x",
+    "moment": ">= 2.10.x",
+    "node-trello": ">= 1.1.x"
+  },
+  "engines": {
+    "node": ">= 0.10.x",
+    "npm": ">= 2.11.x"
+  }
+}
