@@ -45,7 +45,7 @@ module.exports = (robot) ->
           <div class="well">
             <img src="https://raw.githubusercontent.com/hico-horiuchi/kaonashi/master/data/icon.png" />
             <h1 class="bold">Kaonashi</h1>
-            <p>顔無</p>
+            <p>工学部祭実行委員会をサポートするHubot</p>
             <p><a class="btn btn-default btn-lg" href="https://github.com/hico-horiuchi/kaonashi"><i class="fa fa-github"></i>&nbsp;GitHubを見る</a></p>
             <p>&copy; <a class="black" href="http://hico-horiuchi.github.io/" target="_blank">Akihiko Horiuchi</a></p>
           </div>
