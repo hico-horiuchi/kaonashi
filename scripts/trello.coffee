@@ -15,6 +15,7 @@
 #   hubot trello comment <card> <text>   - カードにコメントを追加
 #   hubot trello assign  <card> <member> - カードに担当者を追加
 #   hubot trello due     <card> <date>   - カードに締切を設定
+#   hubot trello member  <name>          - メンバーが担当するカードの一覧を表示
 
 moment = require('moment')
 table = require('easy-table')
@@ -147,6 +148,18 @@ module.exports = (robot) ->
         return msg.reply(ERR_MSG)
       msg.reply("「#{data.name}」の締切を設定しました\n#{data.shortUrl}")
 
+  getMembersCards = (msg, args) ->
+    url = "/1/members/#{args['memberName']}/cards"
+    trello.get url, (err, data) =>
+      if err
+        return msg.reply(ERR_MSG)
+      t = new table
+      data.forEach (card) ->
+        t.cell('URL', card.shortUrl)
+        t.cell('Name', card.name)
+        t.newRow()
+      msg.reply("```\n#{t.print().trim()}\n```")
+
   getOrganizationsMembers()
 
   robot.respond /trello\s+list\s+(\S+)$/i, (msg) ->
@@ -197,4 +210,9 @@ module.exports = (robot) ->
     putCardsDue(msg, {
       cardShort: msg.match[1]
       cardDue: JSTtoUTC(msg.match[2])
+    })
+
+  robot.respond /trello\s+member\s+(\S+)$/i, (msg) ->
+    getMembersCards(msg, {
+      memberName: msg.match[1]
     })

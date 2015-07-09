@@ -50,7 +50,7 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
       <td>現在の時刻を表示</td>
     </tr>
     <tr>
-      <td rowspan="8"><tt>trello.coffee</tt></td>
+      <td rowspan="9"><tt>trello.coffee</tt></td>
       <td><tt>trello list &lt;list&gt;</tt></td>
       <td>カードの一覧を表示</td>
     </tr>
@@ -81,6 +81,10 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
     <tr>
       <td><tt>trello due &lt;card&gt; &lt;date&gt;</tt></td>
       <td>カードに締切を設定</td>
+    </tr>
+    <tr>
+      <td><tt>trello member &lt;name&gt;</tt></td>
+      <td>メンバーが担当するカードの一覧を表示</td>
     </tr>
     <tr>
       <td><tt>z_dialogue.coffee</tt></td>
