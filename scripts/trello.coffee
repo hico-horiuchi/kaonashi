@@ -15,7 +15,7 @@
 #   hubot trello comment <card> <text>   - カードにコメントを追加
 #   hubot trello assign  <card> <member> - カードに担当者を追加
 #   hubot trello due     <card> <date>   - カードに締切を設定
-#   hubot trello members                 - ボードのメンバーの一覧を表示
+#   hubot trello member                  - ボードのメンバーの一覧を表示
 #   hubot trello member  <name>          - メンバーが担当するカードの一覧を表示
 
 moment = require('moment')
@@ -25,7 +25,7 @@ trelloAPI = require('node-trello')
 UTCtoJST = (utc) ->
   if utc is null
     return ''
-  return moment(utc).locale('ja').format('YYYY/MM/DD(ddd) hh:mm')
+  return moment(utc).locale('ja').format('YYYY/MM/DD hh:mm')
 
 JSTtoUTC = (jst) ->
   if jst is null
@@ -102,7 +102,8 @@ module.exports = (robot) ->
         return msg.reply(ERR_MSG)
       t = new table
       data.forEach (card) ->
-        t.cell('URL', card.shortUrl)
+        t.cell('Link', card.shortLink)
+        t.cell('Due', UTCtoJST(card.due))
         t.cell('Name', card.name)
         t.newRow()
       msg.reply("```\n#{t.print().trim()}\n```")
@@ -168,7 +169,8 @@ module.exports = (robot) ->
         return msg.reply(ERR_MSG)
       t = new table
       data.forEach (card) ->
-        t.cell('URL', card.shortUrl)
+        t.cell('Link', card.shortLink)
+        t.cell('Due', UTCtoJST(card.due))
         t.cell('Name', card.name)
         t.newRow()
       msg.reply("```\n#{t.print().trim()}\n```")
@@ -225,7 +227,7 @@ module.exports = (robot) ->
       cardDue: JSTtoUTC(msg.match[2])
     })
 
-  robot.respond /trello\s+members$/i, (msg) ->
+  robot.respond /trello\s+member$/i, (msg) ->
     getOrganizationsBoards(msg, {
       callbacks: [getBoardsMembers]
     })
