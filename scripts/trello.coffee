@@ -46,7 +46,7 @@ module.exports = (robot) ->
   getMemberNameByID = (id) ->
     for member in MEMBERS
       if member.id is id
-        return member.username
+        return member
     return ''
 
   getMemberIDByName = (name) ->
@@ -61,16 +61,17 @@ module.exports = (robot) ->
       if err
         return msg.reply(ERR_MSG)
       for board in data
-        if board.name.toLowerCase() is msg.envelope.room
+        if board.name.toLowerCase() is 'public' # msg.envelope.room
           args['boardID'] = board.id
           return args['callbacks'].shift()(msg, args)
       msg.reply(NIL_MSG)
 
-  getOrganizationsMembers = (name) ->
+  getOrganizationsMembers = () ->
     url = "/1/organizations/#{ORG}/members"
     trello.get url, (err, data) =>
-      unless err
-        MEMBERS = data
+      if err
+        return
+      MEMBERS = data
 
   getBoardsLists = (msg, args) ->
     url = "/1/boards/#{args['boardID']}/lists"
@@ -93,7 +94,9 @@ module.exports = (robot) ->
         t.cell('Name', member.username)
         t.cell('Full', member.fullName)
         t.newRow()
-      msg.reply("```\n#{t.print().trim()}\n```")
+      if t.rows.length > 0
+        return msg.reply("```\n#{t.print().trim()}\n```")
+      msg.reply(NIL_MSG)
 
   getListsCards = (msg, args) ->
     url = "/1/lists/#{args['listID']}/cards"
@@ -102,11 +105,16 @@ module.exports = (robot) ->
         return msg.reply(ERR_MSG)
       t = new table
       data.forEach (card) ->
+        card.idMembers = card.idMembers.map (member) ->
+          member = getMemberNameByID(member)
         t.cell('Link', card.shortLink)
-        t.cell('Due', UTCtoJST(card.due))
+        t.cell('Due', UTCtoJST(card.due).split(' ')[0])
+        t.cell('Members', card.idMembers.join(','))
         t.cell('Name', card.name)
         t.newRow()
-      msg.reply("```\n#{t.print().trim()}\n```")
+      if t.rows.length > 0
+        return msg.reply("```\n#{t.print().trim()}\n```")
+      msg.reply(NIL_MSG)
 
   postListsCards = (msg, args) ->
     url = "/1/lists/#{args['listID']}/cards"
@@ -122,7 +130,7 @@ module.exports = (robot) ->
         return msg.reply(ERR_MSG)
       data.idMembers = data.idMembers.map (member) ->
         member = getMemberNameByID(member)
-      msg.reply("```\n名前: #{data.name}\n締切: #{UTCtoJST(data.due)}\n担当: #{data.idMembers.join(', ')}\n```")
+      msg.reply("```\n名前: #{data.name}\n締切: #{UTCtoJST(data.due)}\n担当: #{data.idMembers.join(',')}\n```")
 
   putCardsIdList = (msg, args) ->
     url = "/1/cards/#{args['cardShort']}/idList"
@@ -169,11 +177,16 @@ module.exports = (robot) ->
         return msg.reply(ERR_MSG)
       t = new table
       data.forEach (card) ->
+        card.idMembers = card.idMembers.map (member) ->
+          member = getMemberNameByID(member)
         t.cell('Link', card.shortLink)
-        t.cell('Due', UTCtoJST(card.due))
+        t.cell('Due', UTCtoJST(card.due).split(' ')[0])
+        t.cell('Members', card.idMembers.join(','))
         t.cell('Name', card.name)
         t.newRow()
-      msg.reply("```\n#{t.print().trim()}\n```")
+      if t.rows.length > 0
+        return msg.reply("```\n#{t.print().trim()}\n```")
+      msg.reply(NIL_MSG)
 
   getOrganizationsMembers()
 

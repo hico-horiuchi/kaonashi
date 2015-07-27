@@ -16,6 +16,7 @@
     "url": "https://github.com/hico-horiuchi/kaonashi.git"
   },
   "dependencies": {
+    "cron": ">= 1.0.x",
     "easy-table": ">= 1.0.x",
     "hubot": ">= 2.13.x",
     "hubot-heroku-keepalive": ">= 0.0.x",

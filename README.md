@@ -21,7 +21,6 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
 ## Commands
 
 <table>
-  <thead></thead>
   <tbody>
     <tr>
       <td rowspan="2"><tt>help.coffee</tt></td>
@@ -97,7 +96,6 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
 ## URLs
 
 <table>
-  <thead></thead>
   <tbody>
     <tr>
       <td><tt>httpd.coffee</tt></td>
@@ -110,9 +108,12 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
 ## Cron
 
 <table>
-  <thead></thead>
   <tbody>
- </tbody>
+    <tr>
+      <td><tt>trello_cron.coffee</tt></td>
+      <td>カードの締切の当日9時に通知</td>
+    </tr>
+  </tbody>
 </table>
 
 ## SpecialThanks
