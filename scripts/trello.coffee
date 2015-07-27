@@ -46,7 +46,7 @@ module.exports = (robot) ->
   getMemberNameByID = (id) ->
     for member in MEMBERS
       if member.id is id
-        return member
+        return member.username
     return ''
 
   getMemberIDByName = (name) ->
@@ -61,7 +61,7 @@ module.exports = (robot) ->
       if err
         return msg.reply(ERR_MSG)
       for board in data
-        if board.name.toLowerCase() is 'public' # msg.envelope.room
+        if board.name.toLowerCase() is msg.envelope.room
           args['boardID'] = board.id
           return args['callbacks'].shift()(msg, args)
       msg.reply(NIL_MSG)
@@ -130,7 +130,22 @@ module.exports = (robot) ->
         return msg.reply(ERR_MSG)
       data.idMembers = data.idMembers.map (member) ->
         member = getMemberNameByID(member)
-      msg.reply("```\n名前: #{data.name}\n締切: #{UTCtoJST(data.due)}\n担当: #{data.idMembers.join(',')}\n```")
+      args['card'] = data
+      args['callbacks'].shift()(msg, args)
+
+  getCardsActions = (msg, args) ->
+    url = "/1/cards/#{args['cardShort']}/actions"
+    trello.get url, { filter: 'commentCard' }, (err, data) =>
+      if err
+        return msg.reply(ERR_MSG)
+      comments = []
+      console.log(args['card'])
+      body = "名前: #{args['card'].name}\n締切: #{UTCtoJST(args['card'].due)}\n担当: #{args['card'].idMembers.join(',')}"
+      for comment in data
+        comments.push("#{comment.memberCreator.username}「#{comment.data.text}」")
+      if comments.length > 0
+        return msg.reply("```\n#{body}\n#{comments.join('\n')}\n```")
+      msg.reply("```\n#{body}\n```")
 
   putCardsIdList = (msg, args) ->
     url = "/1/cards/#{args['cardShort']}/idList"
@@ -212,6 +227,7 @@ module.exports = (robot) ->
 
   robot.respond /trello\s+show\s+(\S+)$/i, (msg) ->
     getCards(msg, {
+      callbacks: [getCardsActions]
       cardShort: msg.match[1]
     })
 
