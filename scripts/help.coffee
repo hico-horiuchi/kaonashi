@@ -16,9 +16,8 @@ module.exports = (robot) ->
     if filter
       cmds = cmds.filter (cmd) ->
         cmd.match(new RegExp(filter, 'i'))
-      if cmds.length == 0
-        msg.reply(NIL_MSG)
-        return
+      if cmds.length is 0
+        return msg.reply(NIL_MSG)
     t = new table
     cmds.forEach (cmd) ->
       cmd = cmd.replace(/^hubot/i, robot.name.toLowerCase())
@@ -26,4 +25,6 @@ module.exports = (robot) ->
       t.cell('Command', arr[0])
       t.cell('Description', arr[1])
       t.newRow()
-    msg.reply('```\n' + t.print().trim() + '\n```')
+    if t.rows.length > 0
+      return msg.reply('```\n' + t.print().trim() + '\n```')
+    msg.reply(NIL_MSG)

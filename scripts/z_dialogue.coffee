@@ -15,12 +15,12 @@ module.exports = (robot) ->
   cmds = []
   for help in robot.helpCommands()
     cmd = help.split(' ')[1]
-    cmds.push(cmd) if cmds.indexOf(cmd) == -1
+    cmds.push(cmd) if cmds.indexOf(cmd) is -1
 
   robot.respond /(.+)$/i, (msg) ->
     return unless apiKey
     cmd = msg.match[1].split(' ')[0]
-    return unless cmds.indexOf(cmd) == -1
+    return unless cmds.indexOf(cmd) is -1
     status['nickname'] = msg.envelope.user.name
     status['utt'] = msg.match[1]
     now = new Date().getTime()

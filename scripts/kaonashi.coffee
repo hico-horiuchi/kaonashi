@@ -13,14 +13,11 @@ module.exports = (robot) ->
   robot.respond /hello$/i, (msg) ->
     hour = new Date().getHours()
     if 5 <= hour < 11
-      msg.reply(':sleepy: ｵﾊﾖｳｺﾞｻﾞｲﾏｽ')
-      return
+      return msg.reply(':sleepy: ｵﾊﾖｳｺﾞｻﾞｲﾏｽ')
     if 11 <= hour < 17
-      msg.reply(':smile: ｺﾝﾆﾁﾜ')
-      return
+      return msg.reply(':smile: ｺﾝﾆﾁﾜ')
     if 17 <= hour < 23
-      msg.reply(':smiley: ｺﾝﾊﾞﾝﾜ')
-      return
+      return msg.reply(':smiley: ｺﾝﾊﾞﾝﾜ')
     msg.reply(':sleeping:')
 
   robot.respond /kill/i, (msg) ->
