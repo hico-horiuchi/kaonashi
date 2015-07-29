@@ -112,7 +112,7 @@ module.exports = (robot) ->
       .panel-heading {
         padding: 10px;
         color: #fff;
-        background-color: #f2634a;
+        background-color: #3b434b;
       }
       @media screen and (max-width: 970px) {
         .main { margin: 15px 0; }
