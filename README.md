@@ -11,6 +11,7 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
     $ heroku config:set HUBOT_HEROKU_KEEPALIVE_URL=$(heroku apps:info -s  | grep web_url | cut -d= -f2)
     $ heroku config:set HUBOT_PING_PATH="/kaonashi/ping"
     $ heroku config:set HUBOT_SLACK_TOKEN=""
+    $ heroku config:set HUBOT_SLACK_ADMIN_TOKEN=""
     $ heroku config:set HUBOT_DOCOMO_DIALOGUE_API_KEY=""
     $ heroku config:set HUBOT_TRELLO_API_KEY=""
     $ heroku config:set HUBOT_TRELLO_API_TOKEN=""
@@ -30,6 +31,11 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
     <tr>
       <td><tt>help &lt;command&gt;</tt></td>
       <td>コマンドの検索結果を表示</td>
+    </tr>
+    <tr>
+      <td><tt>invite.coffee</tt></td>
+      <td><tt>invite &lt;email&gt;</tt></td>
+      <td>チームにユーザーを招待</td>
     </tr>
     <tr>
       <td rowspan="4"><tt>kaonashi.coffee</tt></td>
@@ -101,6 +107,15 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
       <td><tt>httpd.coffee</tt></td>
       <td><tt>GET /huboco/info</tt></td>
       <td>Hubocoの紹介ページを表示</td>
+    </tr>
+    <tr>
+      <td rowspan="2"><tt>invite.coffee</tt></td>
+      <td><tt>GET /slack/form</tt></td>
+      <td>Slackのチームの招待フォームを表示</td>
+    </tr>
+    <tr>
+      <td><tt>POST /slack/invite</tt></td>
+      <td>Slackのチームにユーザーを招待</td>
     </tr>
  </tbody>
 </table>

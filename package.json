@@ -23,7 +23,8 @@
     "hubot-ping": "git://github.com/bouzuya/hubot-ping.git",
     "hubot-slack": ">= 3.3.x",
     "moment": ">= 2.10.x",
-    "node-trello": ">= 1.1.x"
+    "node-trello": ">= 1.1.x",
+    "request": ">= 2.57.x"
   },
   "engines": {
     "node": ">= 0.10.x",
