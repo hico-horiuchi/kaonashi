@@ -145,6 +145,65 @@ module.exports = (robot) ->
 </html>
     """
 
+  errorPage = (error) ->
+    """
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Slack Error | Kaonashi</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="//fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet" />
+    <style type="text/css"><!--
+      body, h1, h2, h3, h4, text {
+        font-family: 'Exo', sans-serif;
+        font-weight: 400;
+      }
+      .bold { font-weight: 600; }
+      .main {
+        text-align: center;
+        margin: 50px 0;
+      }
+      a.black { color: #333333; }
+      a.black:hover {
+        color: #999999;
+        text-decoration: none;
+      }
+      .alert {
+        margin-bottom: 15px;
+        padding: 10px;
+        color: #fff;
+        background-color: #3b434b;
+      }
+      @media screen and (max-width: 970px) {
+        .main { margin: 15px 0; }
+      }
+    --></style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 main">
+          <div class="well">
+            <img src="https://assets.brandfolder.com/c8d4sd15/original/slack_rgb.png" width="256" />
+            <p>エラーが発生しました</p>
+            <div class="alert">
+              <strong>#{error}</strong>
+            </div>
+            <p>&copy; <a class="black" href="http://hico-horiuchi.github.io/" target="_blank">Akihiko Horiuchi</a></p>
+          </div>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+  </body>
+</html>
+    """
+
   robot.respond /invite\s+(\S+)$/i, (msg) ->
     email = msg.match[1]
     options = {
@@ -189,5 +248,5 @@ module.exports = (robot) ->
     request.post options, (err, res, body) ->
       json = JSON.parse(body)
       unless json.ok
-        return call.send(json.error)
+        return call.end(errorPage(json.error))
       call.end(submitPage(name, email))
