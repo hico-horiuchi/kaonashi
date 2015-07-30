@@ -216,7 +216,7 @@ module.exports = (robot) ->
     request.post options, (err, res, body) ->
       json = JSON.parse(body)
       unless json.ok
-        return msg.reply(ERR_MSG + "\n```\n#{json.error}\n```")
+        return msg.reply("#{ERR_MSG}\n```\n#{json.error}\n```")
       msg.reply(":kissing_heart: #{email} を招待しました")
 
   robot.router.get '/slack/form', (req, call) ->
