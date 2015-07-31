@@ -52,7 +52,7 @@ module.exports = (robot) ->
     trello.get url, (err, data) =>
       if err
         return
-      today = moment('').locale('ja').format('YYYY/MM/DD')
+      today = moment().locale('ja').format('YYYY/MM/DD')
       t = new table
       for card in data
         due = UTCtoJST(card.due)
