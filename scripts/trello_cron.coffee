@@ -65,7 +65,7 @@ module.exports = (robot) ->
           t.cell('Name', card.name)
           t.newRow()
       if t.rows.length > 0
-        robot.send({ room: board.name.toLowerCase() }, "本日締切のカードです```\n#{t.print().trim()}\n```")
+        robot.send({ room: board.name.toLowerCase() }, "本日締切のカードです\n```\n#{t.print().trim()}\n```")
 
   getOrganizationsMembers()
 
