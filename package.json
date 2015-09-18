@@ -18,16 +18,16 @@
   "dependencies": {
     "cron": ">= 1.0.x",
     "easy-table": ">= 1.0.x",
-    "hubot": ">= 2.15.x",
+    "hubot": ">= 2.16.x",
     "hubot-heroku-keepalive": ">= 0.0.x",
     "hubot-ping": "git://github.com/bouzuya/hubot-ping.git",
     "hubot-slack": ">= 3.3.x",
     "moment": ">= 2.10.x",
     "node-trello": ">= 1.1.x",
-    "request": ">= 2.61.x"
+    "request": ">= 2.62.x"
   },
   "engines": {
-    "node": ">= 0.10.x",
-    "npm": ">= 2.14.x"
+    "node": ">= 0.12.x",
+    "npm": ">= 3.3.x"
   }
 }
