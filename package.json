@@ -1,14 +1,14 @@
 {
   "name": "kaonashi",
-  "description": "顔無",
-  "version": "2.13.2",
+  "description": "工学部祭実行委員会をサポートするHubot",
+  "version": "2.16.0",
   "author": "hico-horiuchi",
   "license": "MIT",
   "private": true,
   "keywords": [
     "github",
     "hubot",
-    "typetalk",
+    "slack",
     "bot"
   ],
   "repository": {
