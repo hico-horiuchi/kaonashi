@@ -31,7 +31,7 @@ module.exports = (robot) ->
         return member.username
     return ''
 
-  getOrganizationsBoards = () ->
+  getOrganizationsBoards = ->
     url = "/1/organizations/#{ORG}/boards"
     trello.get url, (err, data) =>
       if err
@@ -39,7 +39,7 @@ module.exports = (robot) ->
       for board in data
         getBoardsCards(board)
 
-  getOrganizationsMembers = () ->
+  getOrganizationsMembers = ->
     url = "/1/organizations/#{ORG}/members"
     trello.get url, (err, data) =>
       if err
@@ -53,12 +53,13 @@ module.exports = (robot) ->
       if err
         return
       today = moment().locale('ja').format('YYYY/MM/DD')
+      member = new String
       t = new table
       for card in data
         due = UTCtoJST(card.due)
         if due.indexOf(today) isnt -1
-          card.idMembers = card.idMembers.map (member) ->
-            member = getMemberNameByID(member)
+          card.idMembers = for member in card.idMembers
+            getMemberNameByID(member)
           t.cell('Link', card.shortLink)
           t.cell('Due', UTCtoJST(card.due).split(' ')[1])
           t.cell('Members', card.idMembers.join(','))

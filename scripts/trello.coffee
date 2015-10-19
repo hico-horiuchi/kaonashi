@@ -66,7 +66,7 @@ module.exports = (robot) ->
           return args['callbacks'].shift()(msg, args)
       msg.reply(NIL_MSG)
 
-  getOrganizationsMembers = () ->
+  getOrganizationsMembers = ->
     url = "/1/organizations/#{ORG}/members"
     trello.get url, (err, data) =>
       if err
@@ -90,7 +90,7 @@ module.exports = (robot) ->
       if err
         return msg.reply(ERR_MSG)
       t = new table
-      data.forEach (member) ->
+      for member in data
         t.cell('Name', member.username)
         t.cell('Full', member.fullName)
         t.newRow()
@@ -104,9 +104,9 @@ module.exports = (robot) ->
       if err
         return msg.reply(ERR_MSG)
       t = new table
-      data.forEach (card) ->
-        card.idMembers = card.idMembers.map (member) ->
-          member = getMemberNameByID(member)
+      for card in data
+        card.idMembers = for member in card.idMembers
+          getMemberNameByID(member)
         t.cell('Link', card.shortLink)
         t.cell('Due', UTCtoJST(card.due).split(' ')[0])
         t.cell('Members', card.idMembers.join(','))
@@ -128,8 +128,8 @@ module.exports = (robot) ->
     trello.get url, (err, data) =>
       if err
         return msg.reply(ERR_MSG)
-      data.idMembers = data.idMembers.map (member) ->
-        member = getMemberNameByID(member)
+      data.idMembers = for member in data.idMembers
+        getMemberNameByID(member)
       args['card'] = data
       args['callbacks'].shift()(msg, args)
 
@@ -191,9 +191,9 @@ module.exports = (robot) ->
       if err
         return msg.reply(ERR_MSG)
       t = new table
-      data.forEach (card) ->
-        card.idMembers = card.idMembers.map (member) ->
-          member = getMemberNameByID(member)
+      for card in data
+        card.idMembers = for member in card.idMembers
+          getMemberNameByID(member)
         t.cell('Link', card.shortLink)
         t.cell('Due', UTCtoJST(card.due).split(' ')[0])
         t.cell('Members', card.idMembers.join(','))
