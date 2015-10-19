@@ -17,6 +17,7 @@ module.exports = (robot) ->
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet" />
+    <link href="//raw.githubusercontent.com/hico-horiuchi/kaonashi/master/data/favicon.ico" rel="shortcut icon" />
     <style type="text/css"><!--
       body, h1, h2, h3, h4, text {
         font-family: 'Exo', sans-serif;
@@ -45,7 +46,7 @@ module.exports = (robot) ->
           <div class="well">
             <img src="https://raw.githubusercontent.com/hico-horiuchi/kaonashi/master/data/icon.png" />
             <h1 class="bold">Kaonashi</h1>
-            <p>工学部祭実行委員会をサポートするHubot</p>
+            <p>工学部祭実行委員会をサポートするHubot。</p>
             <p><a class="btn btn-default btn-lg" href="https://github.com/hico-horiuchi/kaonashi"><i class="fa fa-github"></i>&nbsp;GitHubを見る</a></p>
             <p>&copy; <a class="black" href="http://hico-horiuchi.github.io/" target="_blank">Akihiko Horiuchi</a></p>
           </div>

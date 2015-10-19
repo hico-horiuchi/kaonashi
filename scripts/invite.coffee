@@ -28,6 +28,7 @@ module.exports = (robot) ->
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet" />
+    <link href="//raw.githubusercontent.com/hico-horiuchi/kaonashi/master/data/favicon.ico" rel="shortcut icon" />
     <style type="text/css"><!--
       body, h1, h2, h3, h4, text {
         font-family: 'Exo', sans-serif;
@@ -55,7 +56,7 @@ module.exports = (robot) ->
         <div class="col-md-4 main">
           <div class="well">
             <img src="https://assets.brandfolder.com/c8d4sd15/original/slack_rgb.png" width="256" />
-            <p>チーム「#{name}」に招待します</p>
+            <p>チーム「#{name}」に招待します。</p>
             <form action="/slack/invite" method="post">
               <input type="hidden" name="name" value="#{name}">
               <div class="form-group">
@@ -90,6 +91,7 @@ module.exports = (robot) ->
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet" />
+    <link href="//raw.githubusercontent.com/hico-horiuchi/kaonashi/master/data/favicon.ico" rel="shortcut icon" />
     <style type="text/css"><!--
       body, h1, h2, h3, h4, text {
         font-family: 'Exo', sans-serif;
@@ -124,7 +126,7 @@ module.exports = (robot) ->
         <div class="col-md-4 main">
           <div class="well">
             <img src="https://assets.brandfolder.com/c8d4sd15/original/slack_rgb.png" width="256" />
-            <p>チーム「#{name}」に招待しました</p>
+            <p>チーム「#{name}」に招待しました。</p>
             <div class="panel">
               <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-envelope"></i></h3>
@@ -155,6 +157,7 @@ module.exports = (robot) ->
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet" />
+    <link href="//raw.githubusercontent.com/hico-horiuchi/kaonashi/master/data/favicon.ico" rel="shortcut icon" />
     <style type="text/css"><!--
       body, h1, h2, h3, h4, text {
         font-family: 'Exo', sans-serif;
@@ -188,7 +191,7 @@ module.exports = (robot) ->
         <div class="col-md-4 main">
           <div class="well">
             <img src="https://assets.brandfolder.com/c8d4sd15/original/slack_rgb.png" width="256" />
-            <p>エラーが発生しました</p>
+            <p>エラーが発生しました。</p>
             <div class="alert">
               <strong>#{error}</strong>
             </div>
