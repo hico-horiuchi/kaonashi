@@ -4,9 +4,6 @@
 # Configuration:
 #   HUBOT_SLACK_ADMIN_TOKEN
 #
-# Commands:
-#   hubot invite <email> - チームにユーザーを招待
-#
 # URLs:
 #   GET  /slack/form   - Slackのチームの招待フォームを表示
 #   POST /slack/invite - Slackのチームにユーザーを招待
@@ -16,6 +13,11 @@ request = require('request')
 urler = require('url')
 
 module.exports = (robot) ->
+  ROOM = 'general'
+
+  say = (room, message) ->
+    robot.send({ room: room }, message)
+
   formPage = (name) ->
     """
 <!DOCTYPE html>
@@ -235,4 +237,5 @@ module.exports = (robot) ->
       json = JSON.parse(body)
       unless json.ok
         return call.end(errorPage(json.error))
+      say(ROOM, "#{email} をチームに招待しました。")
       call.end(submitPage(name, email))

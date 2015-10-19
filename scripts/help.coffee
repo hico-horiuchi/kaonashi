@@ -8,7 +8,7 @@
 table = require('easy-table')
 
 module.exports = (robot) ->
-  NIL_MSG = ':expressionless: 結果なし'
+  NIL_MSG = '結果はありません。'
 
   robot.respond /help\s*(.+)?$/i, (msg) ->
     cmds = robot.helpCommands()
