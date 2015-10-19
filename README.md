@@ -33,11 +33,6 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
       <td>コマンドの検索結果を表示</td>
     </tr>
     <tr>
-      <td><tt>invite.coffee</tt></td>
-      <td><tt>invite &lt;email&gt;</tt></td>
-      <td>チームにユーザーを招待</td>
-    </tr>
-    <tr>
       <td rowspan="4"><tt>kaonashi.coffee</tt></td>
       <td><tt>hello</tt></td>
       <td>時刻に応じて簡単な挨拶</td>
@@ -117,7 +112,7 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
       <td><tt>POST /slack/invite</tt></td>
       <td>Slackのチームにユーザーを招待</td>
     </tr>
- </tbody>
+  </tbody>
 </table>
 
 ## Cron
