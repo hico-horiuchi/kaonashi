@@ -8,7 +8,7 @@ Slackの工学部祭実行委員チームで、[Trello](https://trello.com/)と�
 ## Install
 
     $ heroku create --stack cedar kaonashi
-    $ heroku config:set HUBOT_HEROKU_KEEPALIVE_URL=$(heroku apps:info -s  | grep web_url | cut -d= -f2)
+    $ heroku config:set HUBOT_HEROKU_KEEPALIVE_URL=$(heroku apps:info -s  | grep web-url | cut -d= -f2)
     $ heroku config:set HUBOT_PING_PATH="/kaonashi/ping"
     $ heroku config:set HUBOT_SLACK_TOKEN=""
     $ heroku config:set HUBOT_SLACK_ADMIN_TOKEN=""
