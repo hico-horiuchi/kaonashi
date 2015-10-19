@@ -16,8 +16,6 @@ request = require('request')
 urler = require('url')
 
 module.exports = (robot) ->
-  ERR_MSG = ':confounded: メンバーの招待に失敗'
-
   formPage = (name) ->
     """
 <!DOCTYPE html>
@@ -203,21 +201,6 @@ module.exports = (robot) ->
   </body>
 </html>
     """
-
-  robot.respond /invite\s+(\S+)$/i, (msg) ->
-    email = msg.match[1]
-    options = {
-      url: "https://slack.com/api/users.admin.invite"
-      qs:
-        'token': process.env.HUBOT_SLACK_ADMIN_TOKEN
-        'email': email
-        'set_active': true
-    }
-    request.post options, (err, res, body) ->
-      json = JSON.parse(body)
-      unless json.ok
-        return msg.reply("#{ERR_MSG}\n```\n#{json.error}\n```")
-      msg.reply(":kissing_heart: #{email} を招待しました")
 
   robot.router.get '/slack/form', (req, call) ->
     options = {

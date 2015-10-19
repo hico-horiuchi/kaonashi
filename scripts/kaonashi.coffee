@@ -12,22 +12,19 @@ moment = require('moment')
 module.exports = (robot) ->
   robot.respond /hello$/i, (msg) ->
     hour = new Date().getHours()
-    if 5 <= hour < 11
-      return msg.reply(':sleepy: ｵﾊﾖｳｺﾞｻﾞｲﾏｽ')
-    if 11 <= hour < 17
-      return msg.reply(':smile: ｺﾝﾆﾁﾜ')
-    if 17 <= hour < 23
-      return msg.reply(':smiley: ｺﾝﾊﾞﾝﾜ')
-    msg.reply(':sleeping:')
-
-  robot.respond /kill/i, (msg) ->
-    msg.reply(':sob: ﾔﾒﾃｰ')
+    if 6 <= hour < 12
+      return msg.reply('おはようございます。')
+    if 12 <= hour < 18
+      return msg.reply('こんにちは。')
+    if 18 <= hour < 24
+      return msg.reply('こんばんは。')
+    msg.reply('おやすみなさい。')
 
   robot.respond /version$/i, (msg) ->
-    msg.reply("私はたぶん#{robot.version}人目だと思うから")
+    msg.reply("多分、私は #{robot.version} 人目だと思うから。")
 
   robot.respond /date$/i, (msg) ->
-    msg.reply("#{moment().locale('ja').format('YYYY/MM/DD(ddd)')} です")
+    msg.reply("#{moment().locale('ja').format('YYYY/MM/DD(ddd)')} です。")
 
   robot.respond /time$/i, (msg) ->
-    msg.reply("#{moment().format('HH:mm:ss')} です")
+    msg.reply("#{moment().format('HH:mm:ss')} です。")

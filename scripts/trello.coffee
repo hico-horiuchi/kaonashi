@@ -33,8 +33,8 @@ JSTtoUTC = (jst) ->
   return moment(jst).locale('ja').format('YYYY-MM-DDThh:mm:ss.SSSZ')
 
 module.exports = (robot) ->
-  ERR_MSG = ':confounded: Trello APIの呼出に失敗'
-  NIL_MSG = ':expressionless: 結果なし'
+  ERR_MSG = 'Trello APIの呼出に失敗しました。'
+  NIL_MSG = '結果はありません。'
   ORG = process.env.HUBOT_TRELLO_ORGANIZATION
   MEMBERS = []
 
@@ -121,7 +121,7 @@ module.exports = (robot) ->
     trello.post url, { name: args['cardName'] }, (err, data) =>
       if err
         return msg.reply(ERR_MSG)
-      # msg.reply("「#{data.name}」を #{args['listName']} に追加しました\n#{data.shortUrl}")
+      # msg.reply("「#{data.name}」を #{args['listName']} に追加しました。\n#{data.shortUrl}")
 
   getCards = (msg, args) ->
     url = "/1/cards/#{args['cardShort']}"
@@ -152,7 +152,7 @@ module.exports = (robot) ->
     trello.put url, { value: args['listID'] }, (err, data) =>
       if err
         return msg.reply(ERR_MSG)
-      # msg.reply("「#{data.name}」を #{args['listName']} に移動しました\n#{data.shortUrl}")
+      # msg.reply("「#{data.name}」を #{args['listName']} に移動しました。\n#{data.shortUrl}")
 
   putCardsClosed = (msg, args) ->
     url = "/1/cards/#{args['cardShort']}/closed"
@@ -160,30 +160,30 @@ module.exports = (robot) ->
       if err
         return msg.reply(ERR_MSG)
       # if args['cardClosed'] is 'true'
-      #   msg.reply("「#{data.name}」をアーカイブしました\n#{data.shortUrl}")
+      #   msg.reply("「#{data.name}」をアーカイブしました。\n#{data.shortUrl}")
       # else if args['cardClosed'] is 'false'
-      #   msg.reply("「#{data.name}」をボードに戻しました\n#{data.shortUrl}")
+      #   msg.reply("「#{data.name}」をボードに戻しました。\n#{data.shortUrl}")
 
   putCardsDue = (msg, args) ->
     url = "/1/cards/#{args['cardShort']}/due"
     trello.put url, { value: args['cardDue'] }, (err, data) =>
       if err
         return msg.reply(ERR_MSG)
-      # msg.reply("「#{data.name}」の締切を設定しました\n#{data.shortUrl}")
+      # msg.reply("「#{data.name}」の締切を設定しました。\n#{data.shortUrl}")
 
   postCardsActionsComments = (msg, args) ->
     url = "/1/cards/#{args['cardShort']}/actions/comments"
     trello.post url, { text: args['cardComment'] }, (err, data) =>
       if err
         return msg.reply(ERR_MSG)
-      # msg.reply("カードにコメントしました\n> #{args['cardComment']}\nhttps://trello.com/c/#{args['cardShort']}")
+      # msg.reply("カードにコメントしました。\n> #{args['cardComment']}\nhttps://trello.com/c/#{args['cardShort']}")
 
   postCardsIDMembers = (msg, args) ->
     url = "/1/cards/#{args['cardShort']}/idMembers"
     trello.post url, { value: args['memberID'] }, (err, data) =>
       if err
         return msg.reply(ERR_MSG)
-      # msg.reply("#{args['memberName']} を担当者に追加しました\nhttps://trello.com/c/#{args['cardShort']}")
+      # msg.reply("#{args['memberName']} を担当者に追加しました。\nhttps://trello.com/c/#{args['cardShort']}")
 
   getMembersCards = (msg, args) ->
     url = "/1/members/#{args['memberName']}/cards"
