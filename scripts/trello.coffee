@@ -59,7 +59,7 @@ module.exports = (robot) ->
     url = "/1/organizations/#{ORG}/boards"
     trello.get url, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       for board in data
         if board.name.toLowerCase() is msg.envelope.room
           args['boardID'] = board.id
@@ -77,7 +77,7 @@ module.exports = (robot) ->
     url = "/1/boards/#{args['boardID']}/lists"
     trello.get url, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       for list in data
         if list.name.toLowerCase() is args['listName']
           args['listID'] = list.id
@@ -88,7 +88,7 @@ module.exports = (robot) ->
     url = "/1/boards/#{args['boardID']}/members"
     trello.get url, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       t = new table
       for member in data
         t.cell('Name', member.username)
@@ -102,7 +102,7 @@ module.exports = (robot) ->
     url = "/1/lists/#{args['listID']}/cards"
     trello.get url, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       t = new table
       for card in data
         card.idMembers = for member in card.idMembers
@@ -120,14 +120,14 @@ module.exports = (robot) ->
     url = "/1/lists/#{args['listID']}/cards"
     trello.post url, { name: args['cardName'] }, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       # msg.reply("「#{data.name}」を #{args['listName']} に追加しました。\n#{data.shortUrl}")
 
   getCards = (msg, args) ->
     url = "/1/cards/#{args['cardShort']}"
     trello.get url, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       data.idMembers = for member in data.idMembers
         getMemberNameByID(member)
       args['card'] = data
@@ -137,7 +137,7 @@ module.exports = (robot) ->
     url = "/1/cards/#{args['cardShort']}/actions"
     trello.get url, { filter: 'commentCard' }, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       comments = []
       console.log(args['card'])
       body = "名前: #{args['card'].name}\n締切: #{UTCtoJST(args['card'].due)}\n担当: #{args['card'].idMembers.join(',')}"
@@ -151,14 +151,14 @@ module.exports = (robot) ->
     url = "/1/cards/#{args['cardShort']}/idList"
     trello.put url, { value: args['listID'] }, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       # msg.reply("「#{data.name}」を #{args['listName']} に移動しました。\n#{data.shortUrl}")
 
   putCardsClosed = (msg, args) ->
     url = "/1/cards/#{args['cardShort']}/closed"
     trello.put url, { value: args['cardClosed'] }, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       # if args['cardClosed'] is 'true'
       #   msg.reply("「#{data.name}」をアーカイブしました。\n#{data.shortUrl}")
       # else if args['cardClosed'] is 'false'
@@ -168,28 +168,28 @@ module.exports = (robot) ->
     url = "/1/cards/#{args['cardShort']}/due"
     trello.put url, { value: args['cardDue'] }, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       # msg.reply("「#{data.name}」の締切を設定しました。\n#{data.shortUrl}")
 
   postCardsActionsComments = (msg, args) ->
     url = "/1/cards/#{args['cardShort']}/actions/comments"
     trello.post url, { text: args['cardComment'] }, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       # msg.reply("カードにコメントしました。\n> #{args['cardComment']}\nhttps://trello.com/c/#{args['cardShort']}")
 
   postCardsIDMembers = (msg, args) ->
     url = "/1/cards/#{args['cardShort']}/idMembers"
     trello.post url, { value: args['memberID'] }, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       # msg.reply("#{args['memberName']} を担当者に追加しました。\nhttps://trello.com/c/#{args['cardShort']}")
 
   getMembersCards = (msg, args) ->
     url = "/1/members/#{args['memberName']}/cards"
     trello.get url, (err, data) =>
       if err
-        return msg.reply(ERR_MSG)
+        return msg.reply("#{ERR_MSG}\n```\n#{err}\n```")
       t = new table
       for card in data
         card.idMembers = for member in card.idMembers
