@@ -15,9 +15,6 @@ urler = require('url')
 module.exports = (robot) ->
   ROOM = 'general'
 
-  say = (room, message) ->
-    robot.send({ room: room }, message)
-
   formPage = (name) ->
     """
 <!DOCTYPE html>
@@ -28,7 +25,7 @@ module.exports = (robot) ->
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css" rel="stylesheet" />
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet" />
     <link href="//raw.githubusercontent.com/hico-horiuchi/kaonashi/master/data/favicon.ico" rel="shortcut icon" />
     <style type="text/css"><!--
@@ -91,7 +88,7 @@ module.exports = (robot) ->
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css" rel="stylesheet" />
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet" />
     <link href="//raw.githubusercontent.com/hico-horiuchi/kaonashi/master/data/favicon.ico" rel="shortcut icon" />
     <style type="text/css"><!--
@@ -157,7 +154,7 @@ module.exports = (robot) ->
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/lumen/bootstrap.min.css" rel="stylesheet" />
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="//fonts.googleapis.com/css?family=Exo:400,600" rel="stylesheet" />
     <link href="//raw.githubusercontent.com/hico-horiuchi/kaonashi/master/data/favicon.ico" rel="shortcut icon" />
     <style type="text/css"><!--
@@ -237,5 +234,5 @@ module.exports = (robot) ->
       json = JSON.parse(body)
       unless json.ok
         return call.end(errorPage(json.error))
-      say(ROOM, "#{email} をチームに招待しました。")
+      robot.send({ room: ROOM }, "#{email} をチームに招待しました。")
       call.end(submitPage(name, email))
